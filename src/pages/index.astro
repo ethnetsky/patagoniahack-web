@@ -1,42 +1,147 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { ShieldAlert, Server, Code2, Lock } from 'lucide-astro';
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<MainLayout title="PatagoniaHack | Seguridad e Infraestructura">
-	<main class="flex flex-col items-center justify-center min-h-screen p-6">
-		<div class="border border-[#00ff41]/20 p-10 bg-[#121212]/50 backdrop-blur-md rounded-sm max-w-3xl w-full shadow-[0_0_20px_rgba(0,255,65,0.05)]">
-			
-			<header class="mb-8">
-				<h1 class="text-4xl md:text-6xl font-bold text-[#00ff41] tracking-tighter">
-					PATAGONIA<span class="text-white">HACK</span>
-				</h1>
-				<div class="h-1 w-24 bg-[#00a8ff] mt-2"></div>
-			</header>
-			
-			<section class="space-y-4 mb-10">
-				<p class="text-gray-400 text-lg leading-relaxed">
-					<span class="text-[#00ff41]">$</span> consultoria --area "seguridad_informatica"
-				</p>
-				<p class="text-white text-xl border-l-2 border-[#00a8ff] pl-4">
-					Infraestructura Crítica & Desarrollo Seguro.
-				</p>
-				<p class="text-gray-500 italic">
-					// Comodoro Rivadavia, Patagonia Argentina.
-				</p>
-			</section>
+<MainLayout title="PatagoniaHack | Infraestructura y Seguridad">
+  
+  <main class="flex flex-col items-center justify-center pt-20 px-4 text-center animate-section">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-600/30 mb-6">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+      </span>
+      <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-red-500 font-bold">
+        System Status: Operational
+      </span>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter">
+      Patagonia<span class="text-red-600">Hack</span>
+    </h1>
 
-			<div class="flex flex-wrap gap-6">
-				<a href="#" class="px-8 py-3 border border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all font-bold">
-					INICIAR_SESION
-				</a>
-				<a href="#" class="px-8 py-3 text-[#00a8ff] hover:bg-[#00a8ff]/10 transition-all">
-					VER_SERVICIOS
-				</a>
-			</div>
-		</div>
-		
-		<footer class="mt-12 text-[10px] text-gray-700 uppercase tracking-[0.5em]">
-			System Status: Stable // Node v24.15.0
-		</footer>
-	</main>
+    <p class="max-w-2xl mb-8 font-mono text-lg text-slate-400 md:text-xl">
+      > Consultoría técnica en infraestructura y seguridad ofensiva.
+    </p>
+
+    <div class="flex flex-col w-full gap-4 md:flex-row md:w-auto">
+      <a href="#servicios" class="px-6 py-3 font-bold text-white transition-colors bg-red-600 rounded-md hover:bg-red-700">
+        Nuestros Servicios
+      </a>
+      <a href="#contacto" class="px-6 py-3 font-bold text-white transition-colors border rounded-md border-slate-700 hover:bg-slate-900">
+        Contacto
+      </a>
+    </div>
+    
+	<div id="servicios" class="scroll-mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 w-full max-w-6xl animate-section">
+      
+      <div class="p-6 transition-all border bg-slate-900/50 border-slate-800 rounded-xl hover:border-red-600 group">
+		<ShieldAlert class="w-10 h-10 text-red-600 mb-4 mx-auto" />
+        <h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Seguridad Ofensiva</h3>
+        <p class="font-mono text-sm text-slate-400">
+          Pentesting, auditorías de red y hardening de servidores críticos.
+        </p>
+      </div>
+
+      <div class="p-6 transition-all border bg-slate-900/50 border-slate-800 rounded-xl hover:border-red-600 group">
+        <Server class="w-10 h-10 text-red-600 mb-4 mx-auto" />
+		<h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Infraestructura</h3>
+        <p class="font-mono text-sm text-slate-400">
+          Gestión de MikroTik, FortiGate, VPNs IPsec y arquitecturas escalables.
+        </p>
+      </div>
+
+      <div class="p-6 transition-all border bg-slate-900/50 border-slate-800 rounded-xl hover:border-red-600 group">
+		<Code2 class="w-10 h-10 text-red-600 mb-4 mx-auto" />        <h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Sistemas</h3>
+        <p class="font-mono text-sm text-slate-400">
+          Automatización de procesos con scripts a medida y monitoreo en tiempo real.
+        </p>
+      </div>
+	  <div class="p-6 transition-all border bg-slate-900/50 border-slate-800 rounded-xl hover:border-red-600 group">
+        <Lock class="w-10 h-10 text-red-600 mb-4 mx-auto" />
+		<h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Desarrollo Seguro</h3>
+        <p class="font-mono text-sm text-slate-400">
+          Implementación de buenas prácticas (OWASP), revisión de código y seguridad desde la concepción del software.
+        </p>
+	</div>
+    </div>
+
+	<section id="proyectos" class="scroll-mt-24 w-full max-w-6xl mt-24 px-4 animate-section">
+      <div class="flex items-center space-x-4 mb-12">
+        <h2 class="text-3xl font-bold italic tracking-tighter">PROJECT_LOG</h2>
+        <div class="h-[1px] flex-grow bg-slate-800"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="group relative p-8 bg-slate-900/20 border border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+          <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4l4 4" />
+            </svg>
+          </div>
+          <span class="text-red-600 font-mono text-xs font-bold">[ PROXY_CORE ]</span>
+          <h3 class="text-2xl font-bold mt-2 mb-4 text-white">NginxFlow</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Panel de control avanzado para la gestión de proxies inversos en Ubuntu Server. Optimizado para despliegues rápidos y monitoreo de tráfico en tiempo real.
+          </p>
+          <div class="flex gap-2">
+            <span class="px-3 py-1 bg-slate-950 text-slate-500 rounded text-xs border border-slate-800">PHP</span>
+            <span class="px-3 py-1 bg-slate-950 text-slate-500 rounded text-xs border border-slate-800">PostgreSQL</span>
+            <span class="px-3 py-1 bg-slate-950 text-slate-500 rounded text-xs border border-slate-800">Nginx</span>
+          </div>
+        </div>
+
+        <div class="group relative p-8 bg-slate-900/20 border border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+          <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <span class="text-red-600 font-mono text-xs font-bold">[ MONITORING_TOOL ]</span>
+          <h3 class="text-2xl font-bold mt-2 mb-4 text-white">SAAMA</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Sistema de logging y monitoreo para Windows. Registro de eventos críticos y telemetría de sistema bajo entorno PatagoniaHack.
+          </p>
+          <div class="flex gap-2">
+            <span class="px-3 py-1 bg-slate-950 text-slate-500 rounded text-xs border border-slate-800">C#</span>
+            <span class="px-3 py-1 bg-slate-950 text-slate-500 rounded text-xs border border-slate-800">.NET</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+	<section id="contacto" class="scroll-mt-24 w-full max-w-4xl mt-24 mb-24 px-4 animate-section">
+  <div class="flex items-center space-x-4 mb-12">
+    <h2 class="text-3xl font-bold italic tracking-tighter text-white">ESTABLISH_CONNECTION</h2>
+    <div class="h-[1px] flex-grow bg-slate-800"></div>
+  </div>
+
+  <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-2xl backdrop-blur-sm">
+    <form action="https://herotools.io/api/debug" method="POST" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label class="text-xs font-mono text-red-500 uppercase tracking-widest">User_Identity</label>
+          <input name="nombres" type="text" placeholder="Nombre o Nickname" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs font-mono text-red-500 uppercase tracking-widest">Return_Address</label>
+          <input name=email" type="email" placeholder="email@dominio.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-xs font-mono text-red-500 uppercase tracking-widest">Encrypted_Payload</label>
+        <textarea name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm resize-none"></textarea>
+      </div>
+
+      <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-mono font-bold uppercase tracking-[0.3em] transition-all rounded-lg shadow-lg shadow-red-900/20">
+        Execute_Send()
+      </button>
+    </form>
+  </div>
+</section>
+  </main>
+
 </MainLayout>

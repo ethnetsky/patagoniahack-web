@@ -1,0 +1,42 @@
+---
+// Navbar.astro
+---
+<nav class="fixed top-0 z-50 w-full border-b bg-slate-950/80 border-slate-800 backdrop-blur-md">
+  <div class="container flex items-center justify-between h-16 px-4 mx-auto">
+    
+    <a href="/" class="text-xl font-bold tracking-tighter">
+      Patagonia<span class="text-red-600">Hack</span>
+    </a>
+
+    <div class="hidden space-x-8 md:flex">
+      <a href="#servicios" data-astro-prefetch class="text-sm font-medium transition-colors text-slate-400 hover:text-white">Servicios</a>
+      <a href="#proyectos" data-astro-prefetch class="text-sm font-medium transition-colors text-slate-400 hover:text-white">Proyectos</a>
+      <a href="#contacto" data-astro-prefetch class="px-4 py-2 text-sm font-bold text-white bg-red-600 rounded-md hover:bg-red-700">Contacto</a>
+    </div>
+
+    <button class="p-2 md:hidden text-slate-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+</nav>
+<script>
+  const menuBtn = document.querySelector('button');
+  const menuLinks = document.querySelector('.hidden.md\\:flex');
+
+  menuBtn?.addEventListener('click', () => {
+    // Esto es una solución temporal simple para alternar visibilidad
+    menuLinks?.classList.toggle('hidden');
+    menuLinks?.classList.toggle('flex');
+    menuLinks?.classList.toggle('flex-col');
+    menuLinks?.classList.toggle('absolute');
+    menuLinks?.classList.toggle('top-16');
+    menuLinks?.classList.toggle('left-0');
+    menuLinks?.classList.toggle('w-full');
+    menuLinks?.classList.toggle('bg-slate-950');
+    menuLinks?.classList.toggle('p-4');
+    menuLinks?.classList.toggle('border-b');
+    menuLinks?.classList.toggle('border-slate-800');
+  });
+</script>

@@ -1,4 +1,10 @@
 ---
+// 1. IMPORTACIONES: Traemos los estilos globales
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// 2. PROPS: Definimos que este layout recibe un "title" (título)
 interface Props {
 	title: string;
 }
@@ -10,20 +16,42 @@ const { title } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="PatagoniaHack - Consultoría en Ciberseguridad" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="PatagoniaHack - Seguridad Ofensiva e Infraestructura" />
+		<meta name="description" content="Servicios de auditoría, redes MikroTik y seguridad ofensiva en Comodoro Rivadavia." />
+        <meta name="author" content="EthNetsy" />
+        <meta name="robots" content="index, follow" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script> import { prefetch } from 'astro:prefetch'; </script>
 	</head>
-	<body class="bg-[#050505] text-white font-mono">
-		<slot />
+	
+	<body class="bg-slate-950 text-white antialiased overflow-x-hidden">
+		<Navbar />
+		<div class="flex-grow">
+          <slot />
+        </div>
+		<Footer />
+		<script>
+          // Mensaje técnico en la consola (Easter Egg para colegas)
+          console.log("%c PATAGONIAHACK SYSTEM v1.0.0 ", "background: #dc2626; color: #ffffff; font-weight: bold;");
+          console.log("%c Status: Online | Location: Comodoro Rivadavia ", "color: #4ade80;");
+
+          // Efecto de parpadeo inicial opcional
+          document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+          });
+        </script>
+
+        <style is:global>
+        /* Suavizado de carga inicial */
+        body {
+          opacity: 0;
+          transition: opacity 0.5s ease-in;
+        }
+        body.loaded {
+          opacity: 1;
+        }
+    </style>
 	</body>
 </html>
-
-<style is:global>
-	/* Aquí es donde Tailwind se activa globalmente */
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-</style>
