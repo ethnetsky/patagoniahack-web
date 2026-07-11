@@ -30,3 +30,8 @@ desktop.ini
 *.njsproj
 *.sln
 *.sw?
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
