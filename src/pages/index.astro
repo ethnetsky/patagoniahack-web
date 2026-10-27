@@ -1,6 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import { ShieldAlert, Server, Code2, Lock } from 'lucide-astro';
+import { ShieldAlert, Server, Code2, Lock } from '@lucide/astro';
 ---
 
 <MainLayout title="PatagoniaHack | Infraestructura y Seguridad">
@@ -51,7 +51,8 @@ import { ShieldAlert, Server, Code2, Lock } from 'lucide-astro';
       </div>
 
       <div class="p-6 transition-all border bg-slate-900/50 border-slate-800 rounded-xl hover:border-red-600 group">
-		<Code2 class="w-10 h-10 text-red-600 mb-4 mx-auto" />        <h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Sistemas</h3>
+		<Code2 class="w-10 h-10 text-red-600 mb-4 mx-auto" />
+        <h3 class="mb-2 text-xl font-bold text-white uppercase tracking-tight">Sistemas</h3>
         <p class="font-mono text-sm text-slate-400">
           Automatización de procesos con scripts a medida y monitoreo en tiempo real.
         </p>
@@ -118,25 +119,31 @@ import { ShieldAlert, Server, Code2, Lock } from 'lucide-astro';
   </div>
 
   <div class="bg-slate-900/40 border border-slate-800 p-8 rounded-2xl backdrop-blur-sm">
-    <form action="https://formspree.io/f/mbdqejwq" method="POST" class="space-y-6">
+    <form id="contact-form" action="https://formspree.io/f/mbdqejwq" method="POST" class="space-y-6">
+      <!-- Honeypot anti-spam para Formspree -->
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="space-y-2">
-          <label class="text-xs font-mono text-red-500 uppercase tracking-widest">User_Identity</label>
-          <input name="nombres" type="text" placeholder="Nombre o Nickname" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
+          <label for="input-nombres" class="text-xs font-mono text-red-500 uppercase tracking-widest">User_Identity</label>
+          <input id="input-nombres" name="nombres" type="text" placeholder="Nombre o Nickname" required minlength="2" maxlength="100" autocomplete="name" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
         </div>
         <div class="space-y-2">
-          <label class="text-xs font-mono text-red-500 uppercase tracking-widest">Return_Address</label>
-          <input name="email" type="email" placeholder="email@dominio.com" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
+          <label for="input-email" class="text-xs font-mono text-red-500 uppercase tracking-widest">Return_Address</label>
+          <input id="input-email" name="email" type="email" placeholder="email@dominio.com" required maxlength="150" autocomplete="email" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm" />
         </div>
       </div>
 
       <div class="space-y-2">
-        <label class="text-xs font-mono text-red-500 uppercase tracking-widest">Encrypted_Payload</label>
-        <textarea name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm resize-none"></textarea>
+        <label for="input-mensaje" class="text-xs font-mono text-red-500 uppercase tracking-widest">Encrypted_Payload</label>
+        <textarea id="input-mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required minlength="10" maxlength="2000" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-red-600 transition-colors font-mono text-sm resize-none"></textarea>
       </div>
 
       <!-- Cloudflare Turnstile Widget -->
       <div class="cf-turnstile" data-sitekey="0x4AAAAAADD1q16Set27SOhs" data-theme="dark"></div>
+      <p id="turnstile-error" class="hidden text-xs font-mono text-red-500">
+        [!] Error: Completa la verificación de seguridad (Turnstile) antes de enviar.
+      </p>
 
       <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-mono font-bold uppercase tracking-[0.3em] transition-all rounded-lg shadow-lg shadow-red-900/20">
         Execute_Send()
@@ -147,6 +154,21 @@ import { ShieldAlert, Server, Code2, Lock } from 'lucide-astro';
   </main>
 
   <!-- Cloudflare Turnstile Script -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+    const turnstileError = document.getElementById('turnstile-error');
+
+    contactForm?.addEventListener('submit', (event) => {
+      const formData = new FormData(contactForm);
+      const token = formData.get('cf-turnstile-response');
+      if (!token || String(token).trim() === '') {
+        event.preventDefault();
+        turnstileError?.classList.remove('hidden');
+      } else {
+        turnstileError?.classList.add('hidden');
+      }
+    });
+  </script>
 
 </MainLayout>
